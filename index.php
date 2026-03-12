@@ -21,6 +21,7 @@ $name = $_POST['name'] ?? '';
 <body>
   <div class="container">
     <h1>Demo Git</h1>
+    <a name="" id="" class="btn btn-primary" href="page3.php" role="button">Trang 3</a>
     <p class="muted">Trang demo để trình bày commit, branch và phản hồi PHP.</p>
 
     <section class="card">
