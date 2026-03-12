@@ -20,7 +20,7 @@ $name = $_POST['name'] ?? '';
 </head>
 <body>
   <div class="container">
-    <h1>Demo Git — Giao diện PHP đơn giản</h1>
+    <h1>Demo Git</h1>
     <p class="muted">Trang demo để trình bày commit, branch và phản hồi PHP.</p>
 
     <section class="card">
