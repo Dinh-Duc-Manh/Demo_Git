@@ -76,3 +76,43 @@ footer {
     margin-top: 10px;
     color: var(--muted)
 }
+
+/* Login / form improvements */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 64vh;
+}
+
+.login-card {
+    max-width: 420px;
+    margin: 24px;
+    padding: 22px;
+    border-radius: 12px;
+}
+
+.login-card h2 {
+    margin: 0 0 6px 0;
+    font-size: 22px;
+}
+
+.form-control {
+    border: 1px solid #e6eef8;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(180deg, var(--accent), #1e40af);
+    border: none;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.18);
+}
+
+.btn-secondary-link {
+    background: transparent;
+    color: var(--accent);
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+}
