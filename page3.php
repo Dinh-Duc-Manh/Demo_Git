@@ -8,6 +8,20 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      #page3Carousel .carousel-item img {
+        width: 700px !important;
+        height: 350px !important;
+        object-fit: cover !important;
+        margin: 0 auto;
+      }
+      @media (max-width: 768px) {
+        #page3Carousel .carousel-item img {
+          width: 100% !important;
+          height: auto !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -17,7 +31,32 @@
       <div class="row">
         <div class="col-md-8">
           <div class="card mb-3">
-            <img src="assets/img/hinh1.jpg" class="card-img-top" alt="a">
+            <div id="page3Carousel" class="carousel slide card-img-top" data-ride="carousel" data-interval="3000">
+              <ol class="carousel-indicators">
+                <li data-target="#page3Carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#page3Carousel" data-slide-to="1"></li>
+                <li data-target="#page3Carousel" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="assets/img/hinh1.jpg" class="d-block w-100" alt="Ảnh 1">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/hinh2.jpg" class="d-block w-100" alt="Ảnh 2">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/hinh3.jpg" class="d-block w-100" alt="Ảnh 3">
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#page3Carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#page3Carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
             <div class="card-body">
               <h5 class="card-title">Chào mừng đến Trang 3</h5>
               <p class="card-text">Welcome to page3</p>
