@@ -3,10 +3,11 @@ session_start();
 
 $error = '';
 $success = '';
+$service = $_POST['service'] ?? '';
 $name = $_POST['name'] ?? '';
-$email = $_POST['email'] ?? '';
 $phone = $_POST['phone'] ?? '';
-$subject = $_POST['subject'] ?? '';
+$email = $_POST['email'] ?? '';
+$company = $_POST['company'] ?? '';
 $message = $_POST['message'] ?? '';
 $honeypot = $_POST['website'] ?? '';
 
@@ -15,33 +16,24 @@ if (empty($_SESSION['csrf_token'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // basic security checks
     if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'] ?? '')) {
         $error = 'Yêu cầu không hợp lệ.';
     } elseif ($honeypot !== '') {
-        // bot likely
         $error = 'Yêu cầu không hợp lệ.';
     } else {
         $name = trim($name);
         $email = trim($email);
         $phone = trim($phone);
-        $subject = trim($subject);
+        $company = trim($company);
         $message = trim($message);
 
-        if ($name === '' || $email === '' || $message === '' || $subject === '') {
+        if ($name === '' || $email === '' || $message === '' || $service === '' || $company === '') {
             $error = 'Vui lòng điền đầy đủ các trường bắt buộc (*)';
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = 'Email không hợp lệ.';
         } else {
-            // demo: gửi mail hoặc lưu vào DB
-            // $to = 'you@domain.com';
-            // $headers = "From: {$name} <{$email}>\r\nReply-To: {$email}";
-            // mail($to, $subject, $message . "\n\nSĐT: $phone", $headers);
-
             $success = 'Cảm ơn bạn! Chúng tôi đã nhận được tin nhắn và sẽ liên hệ sớm.';
-            // reset form
-            $name = $email = $phone = $subject = $message = '';
-            // refresh CSRF
+            $name = $email = $phone = $company = $service = $message = '';
             $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
         }
     }
@@ -67,15 +59,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .form-wrap{padding:2rem;background:#fff;flex:0 0 auto}
     .required{color:#d9534f}
     .social a{margin-right:.5rem;text-decoration:none}
+    form{display:block}
+    form .form-group{margin-bottom:1.25rem;display:block;width:100%}
+    form .form-row{display:flex;gap:1rem;margin-bottom:1.25rem}
+    form .form-row .form-group{flex:1;margin-bottom:0}
+    form .form-control{width:100%}
     </style>
 </head>
 <body>
 <div class="container contact-wrap">
     <div class="card card-contact">
         <div class="row no-gutters">
-            <!-- form trên cùng (full width), bỏ col-lg- -->
+            <!-- form trên cùng (full width) -->
             <div class="form-wrap w-100 mb-4">
-                <h4>Gửi thông tin liên hệ</h4>
+                <a class="btn btn-primary" href="index.php" role="button">Home</a>
+                <h4 class="mt-3">Gửi thông tin liên hệ</h4>
                 <p class="text-muted">Vui lòng điền thông tin; chúng tôi sẽ phản hồi trong vòng 24-48 giờ.</p>
 
                 <?php if ($error): ?>
@@ -88,49 +86,79 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8') ?>">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
-                    <input type="hidden" name="website" value=""> <!-- honeypot -->
+                    <input type="hidden" name="website" value="">
 
+                    <!-- Loại tư vấn -->
+                    <div class="form-group">
+                        <label for="service">Loại tư vấn <span class="required">*</span></label>
+                        <select id="service" name="service" class="form-control" required>
+                            <option value="">Chọn dịch vụ</option>
+                            <option value="web" <?= $service === 'web' ? 'selected' : '' ?>>Phát triển web</option>
+                            <option value="mobile" <?= $service === 'mobile' ? 'selected' : '' ?>>Phát triển di động</option>
+                            <option value="salesforce" <?= $service === 'salesforce' ? 'selected' : '' ?>>Phát triển Salesforce</option>
+                            <option value="offshore" <?= $service === 'offshore' ? 'selected' : '' ?>>Phát triển Offshore</option>
+                            <option value="testing" <?= $service === 'testing' ? 'selected' : '' ?>>QC & Kiểm thử</option>
+                            <option value="consulting" <?= $service === 'consulting' ? 'selected' : '' ?>>Tư vấn CNTT</option>
+                        </select>
+                    </div>
+
+                    <!-- Họ & tên + Số điện thoại -->
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group">
                             <label for="name">Họ & tên <span class="required">*</span></label>
-                            <input id="name" name="name" class="form-control" required value="<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>">
+                            <input id="name" name="name" class="form-control" placeholder="Nhập tên của bạn" required value="<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>">
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="email">Email <span class="required">*</span></label>
-                            <input id="email" name="email" type="email" class="form-control" required value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="phone">Số điện thoại</label>
-                            <input id="phone" name="phone" class="form-control" value="<?= htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') ?>">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="subject">Chủ đề <span class="required">*</span></label>
-                            <input id="subject" name="subject" class="form-control" required value="<?= htmlspecialchars($subject, ENT_QUOTES, 'UTF-8') ?>">
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại <span class="required">*</span></label>
+                            <input id="phone" name="phone" class="form-control" placeholder="Nhập số điện thoại" required value="<?= htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') ?>">
                         </div>
                     </div>
 
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input id="email" name="email" type="email" class="form-control" placeholder="Nhập email của bạn" required value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>">
+                    </div>
+
+                    <!-- Công ty -->
+                    <div class="form-group">
+                        <label for="company">Công ty <span class="required">*</span></label>
+                        <input id="company" name="company" class="form-control" placeholder="Tên công ty của bạn" required value="<?= htmlspecialchars($company, ENT_QUOTES, 'UTF-8') ?>">
+                    </div>
+
+                    <!-- Nội dung -->
                     <div class="form-group">
                         <label for="message">Nội dung <span class="required">*</span></label>
-                        <textarea id="message" name="message" rows="6" class="form-control" required><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></textarea>
+                        <textarea id="message" name="message" rows="5" class="form-control" placeholder="Nhập thông tin chi tiết..." required><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></textarea>
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="text-muted small">Bằng việc gửi, bạn đồng ý với chính sách bảo mật.</div>
-                        <div>
-                            <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
-                            <a class="btn btn-link" href="index.php">Quay lại</a>
+                    <!-- Checkbox -->
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="privacy" name="privacy" required>
+                            <label class="custom-control-label" for="privacy">
+                                Tôi đồng ý với <a href="#" class="text-primary">chính sách bảo mật</a>
+                            </label>
                         </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-gradient">
+                            Xác nhận thông tin
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:0.5rem;vertical-align:middle">
+                                <polyline points="13 17 20 10 13 3"></polyline>
+                                <polyline points="20 10 0 10"></polyline>
+                            </svg>
+                        </button>
                     </div>
                 </form>
             </div>
 
-            <!-- thông tin liên hệ bên dưới (full width), bỏ col-lg- -->
+            <!-- Thông tin liên hệ -->
             <div class="info w-100">
                 <h3>Liên hệ với chúng tôi</h3>
-                <p class="text-muted">Mô tả ngắn: nếu bạn cần hỗ trợ, báo giá hoặc hợp tác, vui lòng gửi thông tin bên dưới.</p>
+                <p class="text-muted">Nếu bạn cần hỗ trợ, báo giá hoặc hợp tác, vui lòng liên hệ trực tiếp.</p>
 
                 <div class="meta-item">
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z" stroke="#2b6cb0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -156,8 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
 
-                <div class="map mt-3 mb-2">
-                    <!-- public map embed, thay địa chỉ nếu cần -->
+                <div class="map">
                     <iframe src="https://www.google.com/maps?q=Hanoi+Vietnam&output=embed" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                 </div>
 
@@ -176,7 +203,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </div>
-
 
 <?php include 'footer.php'; ?>
 
