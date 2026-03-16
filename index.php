@@ -2,28 +2,37 @@
 $branch = null;
 $commits = null;
 if (is_dir(__DIR__ . '/.git')) {
-    $branch = trim(@shell_exec('git -C ' . escapeshellarg(__DIR__) . ' rev-parse --abbrev-ref HEAD 2>/dev/null'));
-    $commits = @shell_exec('git -C ' . escapeshellarg(__DIR__) . ' --no-pager log --oneline -n 5 2>/dev/null');
+  $branch = trim(@shell_exec('git -C ' . escapeshellarg(__DIR__) . ' rev-parse --abbrev-ref HEAD 2>/dev/null'));
+  $commits = @shell_exec('git -C ' . escapeshellarg(__DIR__) . ' --no-pager log --oneline -n 5 2>/dev/null');
 }
 $name = $_POST['name'] ?? '';
 ?>
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Demo Git - Giao diện đơn giản</title>
+  <title>Demo Git</title>
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <style> /* fallback small styles if CSS not loaded */
-    html,body{height:100%;margin:0;font-family:Inter,Arial,Helvetica,sans-serif}
+  <style>
+    /* fallback small styles if CSS not loaded */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Demo Git</h1>
+    <a name="" id="" class="btn btn-success" href="page2.php" role="button">Trang 2</a>
     <a name="" id="" class="btn btn-primary" href="page3.php" role="button">Trang 3</a>
-    <a name="" id="" class="btn btn-primary" href="page2.php" role="button">Login</a>
+    <a name="" id="" class="btn btn-info" href="contact.php" role="button">Liên hệ</a>
     <p class="muted">Trang demo để trình bày commit, branch và phản hồi PHP.</p>
 
     <section class="card">
@@ -56,8 +65,11 @@ $name = $_POST['name'] ?? '';
   </div>
 
 
+  <?php include 'footer.php'; ?>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>
