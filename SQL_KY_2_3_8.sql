@@ -3,6 +3,16 @@ go
 Drop DATABASE web_books;
 go
 CREATE DATABASE web_books;
+use master;
+go
+Drop DATABASE web_books;
+go
+CREATE DATABASE web_books;
+use master;
+go
+Drop DATABASE web_books;
+go
+CREATE DATABASE web_books;
 GO
 USE web_books;
 GO
