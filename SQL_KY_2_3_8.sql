@@ -1,10 +1,10 @@
 ﻿use master;
 go
-Drop DATABASE KY_2;
+Drop DATABASE web_books;
 go
-CREATE DATABASE KY_2;
+CREATE DATABASE web_books;
 GO
-USE KY_2;
+USE web_books;
 GO
 CREATE TABLE Categories
 (
