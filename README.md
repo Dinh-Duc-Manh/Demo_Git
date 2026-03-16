@@ -1,4 +1,4 @@
-# Demo Git — Giao diện PHP đơn giản
+# Demo Git + Giao diện PHP đơn giản
 
 Mục đích: trang rất nhỏ để demo Git + PHP khi trình diễn.
 
