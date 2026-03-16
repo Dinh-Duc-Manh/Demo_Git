@@ -14,5 +14,3 @@ Ghi chú:
 - Nếu thư mục chứa `.git`, trang sẽ cố gắng hiển thị branch hiện tại và 5 commit gần nhất.
 - File chính: [index.php](index.php)
 - Stylesheet: [assets/style.css](assets/style.css)
-
-Bạn muốn tôi cập nhật thêm chức năng (ví dụ: hiển thị diff, nút pull/push giả lập)?
