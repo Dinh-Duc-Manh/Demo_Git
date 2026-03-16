@@ -23,7 +23,7 @@ select * from Categories
 go
 CREATE TABLE Products
 (
-	Id int PRIMARY KEY IDENTITY,
+	Id int PRIMARY KEY IDENTITY, 
 	Name nvarchar(120) NOT NULL,
 	Author nvarchar(60) NOT NULL,
 	Nha_cung_cap nvarchar(60) NOT NULL,
