@@ -69,7 +69,7 @@
           <div class="list-group mb-3">
             <a href="index.php" class="list-group-item list-group-item-action">Trang 1</a>
             <a href="page2.php" class="list-group-item list-group-item-action">Trang 2</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Liên hệ (tạm)</a>
+            <a href="contact.php" class="list-group-item list-group-item-action">Liên hệ</a>
           </div>
           <div class="card">
             <div class="card-body p-2">
