@@ -84,6 +84,7 @@
         <a class="btn btn-primary" href="index.php" role="button">Quay lại Trang 1</a>
       </div>
 
+    </div>
       <?php include 'footer.php'; ?>
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->

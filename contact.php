@@ -190,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="mt-3">
                     <strong>Giờ làm việc</strong>
-                    <div class="text-muted">T2 - T6: 08:30 - 17:30 · T7: 09:00 - 12:00</div>
+                    <div class="text-muted">T2 - T6: 08:30 - 17:30</div>
                 </div>
 
                 <div class="mt-3 social">
