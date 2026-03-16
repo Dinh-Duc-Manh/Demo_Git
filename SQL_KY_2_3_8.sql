@@ -1,20 +1,11 @@
-﻿use master;
-go
-Drop DATABASE web_books;
-go
-CREATE DATABASE web_books;
+﻿
 use master;
 go
-Drop DATABASE web_books;
+Drop DATABASE shop_books;
 go
-CREATE DATABASE web_books;
-use master;
-go
-Drop DATABASE web_books;
-go
-CREATE DATABASE web_books;
+CREATE DATABASE shop_books;
 GO
-USE web_books;
+USE shop_books;
 GO
 CREATE TABLE Categories
 (
