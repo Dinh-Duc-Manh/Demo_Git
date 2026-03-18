@@ -11,6 +11,6 @@ php -S localhost:8000
 ```
 
 Ghi chú:
-- Nếu thư mục chứa `.git`, trang sẽ cố gắng hiển thị branch hiện tại và 5 commit gần nhất.
+- Nếu thư mục chứa `.git`, trang sẽ cố gắng hiển thị branch hiện tại và 100 commit gần nhất.
 - File chính: [index.php](index.php)
 - Stylesheet: [assets/style.css](assets/style.css)

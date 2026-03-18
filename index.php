@@ -3,7 +3,7 @@ $branch = null;
 $commits = null;
 if (is_dir(__DIR__ . '/.git')) {
   $branch = trim(@shell_exec('git -C ' . escapeshellarg(__DIR__) . ' rev-parse --abbrev-ref HEAD 2>/dev/null'));
-  $commits = @shell_exec('git -C ' . escapeshellarg(__DIR__) . ' --no-pager log --oneline -n 5 2>/dev/null');
+  $commits = @shell_exec('git -C ' . escapeshellarg(__DIR__) . ' --no-pager log --oneline --graph --decorate -n 100 2>/dev/null');
 }
 $name = $_POST['name'] ?? '';
 ?>
@@ -30,9 +30,9 @@ $name = $_POST['name'] ?? '';
 <body>
   <div class="container">
     <h1>Demo Git</h1>
-    <a name="" id="" class="btn btn-success" href="page2.php" role="button">Trang 2</a>
-    <a name="" id="" class="btn btn-primary" href="page3.php" role="button">Trang 3</a>
-    <a name="" id="" class="btn btn-info" href="contact.php" role="button">Liên hệ</a>
+    <a id="" class="btn btn-success" href="page2.php" role="button">Trang 2</a>
+    <a id="" class="btn btn-primary" href="page3.php" role="button">Trang 3</a>
+    <a id="" class="btn btn-info" href="contact.php" role="button">Liên hệ</a>
     <p class="muted">Trang demo để trình bày commit, branch và phản hồi PHP.</p>
 
     <section class="card">
