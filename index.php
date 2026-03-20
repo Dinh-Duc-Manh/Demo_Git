@@ -28,11 +28,9 @@ $name = $_POST['name'] ?? '';
 </head>
 
 <body>
+  <?php include 'header.php'; ?>
   <div class="container">
     <h1>Demo Git</h1>
-    <a id="" class="btn btn-success" href="page2.php" role="button">Trang 2</a>
-    <a id="" class="btn btn-primary" href="page3.php" role="button">Trang 3</a>
-    <a id="" class="btn btn-info" href="contact.php" role="button">Liên hệ</a>
     <p class="muted">Trang demo để trình bày commit, branch và phản hồi PHP.</p>
 
     <section class="card">
