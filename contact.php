@@ -153,7 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row no-gutters">
                 <!-- form trên cùng (full width) -->
                 <div class="form-wrap w-100 mb-4">
-                    <a class="btn btn-primary" href="index.php" role="button">Home</a>
                     <h4 class="mt-3">Gửi thông tin liên hệ</h4>
                     <p class="text-muted">Vui lòng điền thông tin; chúng tôi sẽ phản hồi trong vòng 24-48 giờ.</p>
 
