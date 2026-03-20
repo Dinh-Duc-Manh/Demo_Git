@@ -28,6 +28,7 @@ $name = $_POST['name'] ?? '';
 </head>
 
 <body>
+  <?php include 'header.php'; ?>
   <div class="container">
     <h1>Demo Git</h1>
     <a id="" class="btn btn-success" href="page2.php" role="button">Trang 2</a>

@@ -25,6 +25,7 @@
     </style>
   </head>
   <body>
+    <?php include 'header.php'; ?>
     <div class="container">
       <h1>Trang 3</h1>
       <p class="muted">Đây là trang 3, bạn có thể quay lại.</p>
